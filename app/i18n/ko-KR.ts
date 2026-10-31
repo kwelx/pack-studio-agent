@@ -66,6 +66,7 @@ const messages = {
     expandSidebar: "사이드바 펼치기",
     extensions: "확장 프로그램",
     home: "홈",
+    studio: "Studio",
     navigation: "탐색",
     navigationDescription: "기본 탐색",
     observability: "관찰성",

@@ -14,6 +14,7 @@ import { OrgSwitcher } from "@agent-native/toolkit/app/org";
 import { openCommandMenu } from "@agent-native/toolkit/app/shared";
 import { AgentNativeIcon } from "@agent-native/toolkit/app/shared/AgentNativeIcon";
 import {
+  IconCards,
   IconEdit,
   IconHome,
   IconLayoutSidebarLeftCollapse,
@@ -146,6 +147,43 @@ function HomeNavLink({ collapsed }: { collapsed: boolean }) {
       <Tooltip>
         <TooltipTrigger asChild>{link}</TooltipTrigger>
         <TooltipContent side="right">{t("navigation.home")}</TooltipContent>
+      </Tooltip>
+    );
+  }
+
+  return <div className="px-2">{link}</div>;
+}
+
+function StudioNavLink({ collapsed }: { collapsed: boolean }) {
+  const t = useT();
+  const location = useLocation();
+  const active =
+    location.pathname === "/studio" || location.pathname.startsWith("/studio/");
+  const link = (
+    <Link
+      to="/studio"
+      aria-current={active ? "page" : undefined}
+      aria-label={collapsed ? t("navigation.studio") : undefined}
+      className={cn(
+        "flex items-center text-sidebar-accent-foreground transition-colors hover:bg-sidebar-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring",
+        active && "bg-sidebar-accent",
+        collapsed
+          ? "size-8 justify-center rounded-md"
+          : "h-8 w-full gap-3 rounded-lg px-3 text-sm font-medium",
+      )}
+    >
+      <IconCards className="size-4 shrink-0" strokeWidth={1.8} />
+      <span className={collapsed ? "sr-only" : "truncate"}>
+        {t("navigation.studio")}
+      </span>
+    </Link>
+  );
+
+  if (collapsed) {
+    return (
+      <Tooltip>
+        <TooltipTrigger asChild>{link}</TooltipTrigger>
+        <TooltipContent side="right">{t("navigation.studio")}</TooltipContent>
       </Tooltip>
     );
   }
@@ -407,6 +445,7 @@ export function Sidebar({
           collapsed ? "items-center gap-1 px-1 py-2" : "pt-1",
         )}
       >
+        <StudioNavLink collapsed={collapsed} />
         <HomeNavLink collapsed={collapsed} />
         <ChatThreadsSection collapsed={collapsed} />
       </nav>

@@ -36,3 +36,12 @@ workspace chrome.
 - Compare sibling apps before reusing their palette or composition.
 - Keep pinning, rename, archive, and routing wired to the shared chat thread
   model; the sidebar is a presentation layer, not a second history store.
+
+## Pack Studio
+
+- Mode: `operate`
+- Audience: one person reviewing a small pack with an agent before export.
+- Direction: proof desk. Six cards and a chronological action log, using the shell's existing ink tokens. Swatches use only the pack's validated hex colors.
+- Composition: a theme field, then the cards. Export stays on the page so an early refusal is visible.
+- Shape: quiet corners, hairline borders, status as a word.
+- Anti-references: stat strips, gradient heroes, and any control that publishes on its own.

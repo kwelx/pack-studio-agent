@@ -9,9 +9,13 @@ import actionsRegistry from "../../.generated/actions-registry.js";
 const INITIAL_TOOL_NAMES = [
   "view-screen",
   "navigate",
-  "hello",
-  "provider-api-request",
-  "ask-question",
+  "draft-pack",
+  "get-pack",
+  "list-packs",
+  "edit-card",
+  "approve-card",
+  "export-pack",
+  "list-pack-events",
 ];
 
 export default createAgentChatPlugin({
@@ -20,9 +24,9 @@ export default createAgentChatPlugin({
   mcp: { connectorCatalog: [], appApprovalPage: true },
   initialToolNames: INITIAL_TOOL_NAMES,
   resolveOrgId: async (event) => (await getOrgContext(event)).orgId,
-  systemPrompt: `You are the Chat app agent.
+  systemPrompt: `You are the Pack Studio agent. You help draft a small digital pack on /studio. You never publish it.
 
-This is a minimal chat-first Agent-Native app. The chat is the product surface, and actions are the contract shared by chat, UI, HTTP, MCP, A2A, and CLI.
+A pack has exactly six cards: title, theme, palette, level1, level2, level3. draft-pack creates them as drafts. edit-card replaces one card and returns it to draft when the text changes. Palette values are 3 to 5 hex colors separated by commas. Level values use "Name — goal". approve-card marks one card approved. Only approve a card when the person asks you to approve that specific card. export-pack returns static HTML and refuses with cards_not_approved until every card is approved. Do not claim a pack shipped, and do not invent a store upload.
 
-Use actions as the source of truth. Start by inspecting the current screen when context matters. When the user asks to extend this app, keep the change small and agent-native: add or update actions, expose useful UI, and keep application state/navigation visible to the agent.`,
+Read get-pack before you describe what is approved. After a write, read it again and report the card text and status you observed. Navigation uses view "studio" and packId when a pack is open.`,
 });

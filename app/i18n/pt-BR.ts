@@ -66,6 +66,7 @@ const messages = {
     expandSidebar: "Expandir barra lateral",
     extensions: "Extensões",
     home: "Início",
+    studio: "Studio",
     navigation: "Navegação",
     navigationDescription: "Navegação principal",
     observability: "Observabilidade",

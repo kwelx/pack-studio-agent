@@ -65,6 +65,7 @@ const messages = {
     expandSidebar: "साइडबार विस्तृत करें",
     extensions: "एक्सटेंशन",
     home: "होम",
+    studio: "Studio",
     navigation: "नेविगेशन",
     navigationDescription: "मुख्य नेविगेशन",
     observability: "अवलोकनक्षमता",

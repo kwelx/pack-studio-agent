@@ -64,6 +64,7 @@ const messages = {
     expandSidebar: "توسيع الشريط الجانبي",
     extensions: "الإضافات",
     home: "الرئيسية",
+    studio: "Studio",
     navigation: "التنقل",
     navigationDescription: "التنقل الرئيسي",
     observability: "قابلية المراقبة",

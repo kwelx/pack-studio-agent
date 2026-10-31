@@ -62,6 +62,7 @@ const messages = {
     expandSidebar: "展開側邊欄",
     extensions: "擴充功能",
     home: "首頁",
+    studio: "Studio",
     navigation: "導覽",
     navigationDescription: "主導覽",
     observability: "可觀測性",

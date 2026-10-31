@@ -2,7 +2,7 @@
   "name": "pack-studio",
   "displayName": "Pack Studio",
   "private": true,
-  "description": "Workspace app for Pack Studio.",
+  "description": "Draft a small digital pack with an agent, then approve every card before export.",
   "type": "module",
   "scripts": {
     "migrate:production": "tsx scripts/migrate-production.ts",

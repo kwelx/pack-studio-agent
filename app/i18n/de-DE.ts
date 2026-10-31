@@ -66,6 +66,7 @@ const messages = {
     expandSidebar: "Seitenleiste ausklappen",
     extensions: "Erweiterungen",
     home: "Start",
+    studio: "Studio",
     navigation: "Navigation",
     navigationDescription: "Hauptnavigation",
     observability: "Beobachtbarkeit",

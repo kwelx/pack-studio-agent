@@ -65,6 +65,7 @@ const messages = {
     expandSidebar: "サイドバーを展開",
     extensions: "拡張機能",
     home: "ホーム",
+    studio: "Studio",
     navigation: "ナビゲーション",
     navigationDescription: "メインナビゲーション",
     observability: "可観測性",

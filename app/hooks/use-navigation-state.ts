@@ -18,6 +18,7 @@ export interface NavigationState {
   path?: string;
   publicPath?: string;
   threadId?: string;
+  packId?: string;
 }
 
 export function useNavigationState() {
@@ -64,12 +65,24 @@ function matchesPathPrefix(pathname: string, prefix: string): boolean {
 
 export function navigationStateForPath(pathname: string): NavigationState {
   const threadId = threadIdFromPath(pathname);
+  const packId = packIdFromPath(pathname);
   return {
     view: viewForPath(pathname),
     path: pathname,
     publicPath: appPathFromLocalRoute(pathname),
     ...(threadId ? { threadId } : {}),
+    ...(packId ? { packId } : {}),
   };
+}
+
+function packIdFromPath(pathname: string): string | undefined {
+  const match = /^\/studio\/([^/]+)/.exec(pathname);
+  if (!match?.[1]) return undefined;
+  try {
+    return decodeURIComponent(match[1]);
+  } catch {
+    return match[1];
+  }
 }
 
 function viewForPath(pathname: string): string {
@@ -83,6 +96,7 @@ function viewForPath(pathname: string): string {
   }
   if (pathname.startsWith("/settings")) return "settings";
   if (pathname.startsWith("/team")) return "settings";
+  if (pathname === "/studio" || pathname.startsWith("/studio/")) return "studio";
   return "chat";
 }
 
@@ -105,12 +119,19 @@ function pathForView(view?: string): string {
       return "/settings";
     case "team":
       return "/settings/organization";
+    case "studio":
+      return "/studio";
     default:
       return HOME_PATH;
   }
 }
 
 export function pathForCommand(command: any): string {
+  if (command?.view === "studio") {
+    const packId =
+      typeof command?.packId === "string" ? command.packId.trim() : "";
+    return packId ? `/studio/${encodeURIComponent(packId)}` : "/studio";
+  }
   const path = pathForView(command?.view);
   if (command?.view !== "chat" && command?.view !== "ask") return path;
   const threadId =

@@ -31,3 +31,19 @@ Use `adding-a-feature` for functional parity and `frontend-design` for a user-fa
 Before building common workspace or agent UI, read `agent-native-toolkit`; for supported customization, read `customizing-agent-native`.
 
 - Guarded verification: run `pnpm agent-native:doctor`; fix findings before done.
+
+## Pack Studio
+
+`/studio` is the proof desk. A pack is private to `owner_email` and has exactly six cards: `title`, `theme`, `palette`, `level1`, `level2`, `level3`. `draft-pack` creates them as drafts. `edit-card` changes one value and returns that card to draft only when the text changes. `approve-card` approves one card. `export-pack` returns static HTML and refuses with `cards_not_approved` until all six are approved. Report that refusal; do not retry export until the named cards are approved. Never claim the pack was published.
+
+Palette text is 3 to 5 hex colors separated by commas. A level is `Name — goal`. Times are UTC ISO strings. Navigation is view `studio` plus `packId` on `/studio/:packId`.
+
+| Action | Use |
+| --- | --- |
+| draft-pack | Create six draft cards from a short theme |
+| get-pack | Read one pack before describing approval |
+| list-packs | List this user's packs |
+| edit-card | Replace one card; changed text returns to draft |
+| approve-card | Approve one card the person named |
+| export-pack | Static HTML after every card is approved |
+| list-pack-events | Action log, oldest first |
